@@ -59,3 +59,6 @@ key
 root-cert
 
 *.sql
+.python-version
+
+settings/local.py

@@ -26,7 +26,7 @@
     </h2>
   </div>
 </div>
-{% cache 300 html_grid_detail_outer grid.pk %}
+{% cache GRID_CACHE_TIME html_grid_detail_outer grid.pk %}
 <div class="row">
   <div class="col-lg-{% if features %}3{% else %}6{% endif %}">
 
@@ -137,27 +137,31 @@
                         </td>
                     {% endfor %}
                 </td>
-                <tr>
-                    <td>{% trans "Python 3?" %}</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{% if grid_package.package.last_released.supports_python3 %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}</td>
-                    {% endfor %}
-                </tr>
-                <tr>
-                    <td>{% trans "Development Status" %}</td>
-                    {% for grid_package in grid_packages %}
-                        <td>
-                            {% with pretty_status=grid_package.package.last_released.pretty_status %}
-                            {% if pretty_status %}
-                                {{ pretty_status|default:"n/a" }}
-                            {% else %}
-                                n/a
-                            {% endif %}
-                            {% endwith %}
+                {% comment %}
+                  <tr>
+                                    <td>{% trans "Python 3?" %}</td>
+                                    {% for grid_package in grid_packages %}
+                                        <td>{% if grid_package.package.last_released.supports_python3 %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}</td>
+                                    {% endfor %}
+                                </tr>
+                {% endcomment %}
+                {% comment %}
+                  <tr>
+                                    <td>{% trans "Development Status" %}</td>
+                                    {% for grid_package in grid_packages %}
+                                        <td>
+                                            {% with pretty_status=grid_package.package.last_released.pretty_status %}
+                                            {% if pretty_status %}
+                                                {{ pretty_status|default:"n/a" }}
+                                            {% else %}
+                                                n/a
+                                            {% endif %}
+                                            {% endwith %}
 
-                        </td>
-                    {% endfor %}
-                </tr>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                {% endcomment %}
                 <tr>
                     <td>{% trans "Last updated" %}</td>
                     {% for grid_package in grid_packages %}
@@ -170,13 +174,15 @@
                         </td>
                     {% endfor %}
                 </tr>
-                <tr>
-                    <td>{% trans "Version" %}</td>
-                    {% for grid_package in grid_packages %}
-                        <td>{{ grid_package.package.pypi_version|default:"n/a" }}</td>
-                    {% endfor %}
+                {% comment %}
+                  <tr>
+                                    <td>{% trans "Version" %}</td>
+                                    {% for grid_package in grid_packages %}
+                                        <td>{{ grid_package.package.pypi_version|default:"n/a" }}</td>
+                                    {% endfor %}
 
-                </tr>
+                                </tr>
+                {% endcomment %}
                 <tr>
                     <td>{% trans "Repo" %}</td>
                     {% for grid_package in grid_packages %}
@@ -219,20 +225,22 @@
                         </td>
                     {% endfor %}
                 </tr>
-                <tr>
-                    <td>{% trans "Documentation" %}</td>
-                    {% for grid_package in grid_packages %}
-                        <td>
-                            {% if grid_package.package.documentation_url.strip and grid_package.package.documentation_url.strip != None %}
-                                <a href="{{ grid_package.package.documentation_url }}">
-                                    <span class="glyphicon glyphicon-book"></span>
-                                </a>
-                            {% else %}
-                                N/A
-                            {% endif %}
-                        </td>
-                    {% endfor %}
-                </tr>
+                {% comment %}
+                  <tr>
+                                    <td>{% trans "Documentation" %}</td>
+                                    {% for grid_package in grid_packages %}
+                                        <td>
+                                            {% if grid_package.package.documentation_url.strip and grid_package.package.documentation_url.strip != None %}
+                                                <a href="{{ grid_package.package.documentation_url }}">
+                                                    <span class="glyphicon glyphicon-book"></span>
+                                                </a>
+                                            {% else %}
+                                                N/A
+                                            {% endif %}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                {% endcomment %}
 
                 {% for feature in features %}
                     <tr class="{% cycle 'even' 'odd' %}">

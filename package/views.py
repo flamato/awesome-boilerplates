@@ -296,20 +296,20 @@ def package_list(request, template_name="package/package_list.html"):
 def package_detail(request, slug, template_name="package/package.html"):
 
     package = get_object_or_404(Package, slug=slug)
-    no_development = package.no_development
-    try:
-        if package.category == Category.objects.get(slug='projects'):
-            # projects get a bye because they are a website
-            pypi_ancient = False
-            pypi_no_release = False
-        else:
-            pypi_ancient = package.pypi_ancient
-            pypi_no_release = package.pypi_ancient is None
-        warnings = no_development or pypi_ancient or pypi_no_release
-    except Category.DoesNotExist:
-        pypi_ancient = False
-        pypi_no_release = False
-        warnings = no_development
+    # no_development = package.no_development
+    # try:
+    #     if package.category == Category.objects.get(slug='projects'):
+    #         # projects get a bye because they are a website
+    #         pypi_ancient = False
+    #         pypi_no_release = False
+    #     else:
+    #         pypi_ancient = package.pypi_ancient
+    #         pypi_no_release = package.pypi_ancient is None
+    #     warnings = no_development or pypi_ancient or pypi_no_release
+    # except Category.DoesNotExist:
+    #     pypi_ancient = False
+    #     pypi_no_release = False
+    #     warnings = no_development
 
     if request.GET.get("message"):
         messages.add_message(request, messages.INFO, request.GET.get("message"))
@@ -317,10 +317,10 @@ def package_detail(request, slug, template_name="package/package.html"):
     return render(request, template_name,
             dict(
                 package=package,
-                pypi_ancient=pypi_ancient,
-                no_development=no_development,
-                pypi_no_release=pypi_no_release,
-                warnings=warnings,
+                # pypi_ancient=pypi_ancient,
+                # no_development=no_development,
+                # pypi_no_release=pypi_no_release,
+                # warnings=warnings,
                 latest_version=package.last_released(),
                 repo=package.repo
             )

@@ -108,6 +108,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
     "core.context_processors.core_values",
+    "core.context_processors.grid_cache_time",
 ]
 
 PROJECT_APPS = [
@@ -245,7 +246,6 @@ LOGIN_REDIRECT_URL = '/'
 #SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 
 DATABASES = {
-
     "default": env.db("DATABASE_URL")
 }
 

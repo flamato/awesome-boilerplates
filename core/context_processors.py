@@ -28,3 +28,9 @@ def current_path(request):
     if request.path.strip() != reverse('logout'):
         context['current_path'] = request.path
     return context
+
+
+def grid_cache_time(request):
+    return {
+        'GRID_CACHE_TIME': getattr(settings, "GRID_CACHE_TIME", 300)
+    }
