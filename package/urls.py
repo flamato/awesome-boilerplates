@@ -24,7 +24,6 @@ urlpatterns = patterns("",
         view=package_list,
         name="packages",
     ),
-
     url(
         regex=r"^latest/$",
         view=ArchiveIndexView.as_view(

@@ -8,17 +8,17 @@
   <div class="row">
     <div class="col-lg-6">
       <h2>{% trans "Example Form" %}</h2>
-      
-      <p>This form adds a website to the &ldquo;Sites using this package&rdquo; list.</p>
-    
+
+      <p>This form adds a website to the &ldquo;Sites using this boilerplate&rdquo; list.</p>
+
       <form action="{{ request.path }}" method="post">
         {% csrf_token %}
         <fieldset>
           {{ form|crispy }}
 
-          <div class="form_block">        
+          <div class="form_block">
             <input class="btn btn-default" type="submit" name="add" value="{% trans "Add new example" %}">
-          </div>            
+          </div>
         </fieldset>
       </form>
     </div>

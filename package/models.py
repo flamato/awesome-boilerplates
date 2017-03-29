@@ -56,8 +56,9 @@ class Package(BaseModel):
     repo_url = models.URLField(_("repo URL"), help_text=repo_url_help_text, blank=True, unique=True)
     repo_watchers = models.IntegerField(_("Stars"), default=0)
     repo_forks = models.IntegerField(_("repo forks"), default=0)
-    participants = models.TextField(_("Participants"),
-                        help_text="List of collaborats/participants on the project", blank=True)
+    participants = models.TextField(
+        _("Participants"),
+        help_text="List of collaborats/participants on the project", blank=True)
     usage = models.ManyToManyField(User, blank=True)
     created_by = models.ForeignKey(User, blank=True, null=True, related_name="creator", on_delete=models.SET_NULL)
     last_modified_by = models.ForeignKey(User, blank=True, null=True, related_name="modifier", on_delete=models.SET_NULL)
@@ -191,7 +192,7 @@ class Package(BaseModel):
 
             version.license = license
 
-            #version stuff
+            # version stuff
             try:
                 url_data = release['urls'][0]
                 version.downloads = url_data['downloads']
@@ -217,10 +218,11 @@ class Package(BaseModel):
             return True
         return False
 
-    def fetch_metadata(self, fetch_pypi=True, fetch_repo=True):
+    def fetch_metadata(self, fetch_pypi=False, fetch_repo=True):
 
-        if fetch_pypi:
-            self.fetch_pypi_data()
+        # if fetch_pypi:
+        #     self.fetch_pypi_data()
+
         if fetch_repo:
             self.repo.fetch_metadata(self)
         signal_fetch_latest_metadata.send(sender=self)
@@ -261,7 +263,6 @@ class Package(BaseModel):
     def development_status(self):
         """ Gets data needed in API v2 calls """
         return self.last_released().pretty_status
-
 
     @property
     def pypi_ancient(self):

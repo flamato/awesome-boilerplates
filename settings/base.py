@@ -67,7 +67,7 @@ STATICFILES_DIRS = [
 ]
 
 # Use the default admin media prefix, which is...
-#ADMIN_MEDIA_PREFIX = "/static/admin/"
+# ADMIN_MEDIA_PREFIX = "/static/admin/"
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -139,7 +139,7 @@ PREREQ_APPS = [
     "django_extensions",
     "reversion",
     "webstack_django_sorting",
-    #"django_modeler",
+    # "django_modeler",
 
     'social.apps.django_app.default',
     'floppyforms',
@@ -243,7 +243,7 @@ SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
 LOGIN_REDIRECT_URL = '/'
 
 # associate user via email
-#SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
+# SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 
 DATABASES = {
     "default": env.db("DATABASE_URL")

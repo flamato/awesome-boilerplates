@@ -30,7 +30,7 @@
 {% endif %}
 {% endcomment %}
 
-<h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'packages' %}">{% trans "packages" %}</a> / {{ package.title }}
+<h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'packages' %}">{% trans "boilerplates" %}</a> / {{ package.title }}
   <a href="{% url 'edit_package' package.slug %}"><span class="glyphicon glyphicon-pencil"></span></a>
 </h2>
 

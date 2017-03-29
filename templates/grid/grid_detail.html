@@ -37,7 +37,7 @@
     {% if features %}
         {% comment %}{% if request.user.is_authenticated and profile.can_add_grid_package %}{% endcomment %}
         {% if request.user.is_authenticated %}
-          <p><a href="{% url 'add_grid_package' grid.slug %}"><span class="glyphicon glyphicon-plus"></span> {% trans "Add package to the grid" %}</a></p>
+          <p><a href="{% url 'add_grid_package' grid.slug %}"><span class="glyphicon glyphicon-plus"></span> {% trans "Add boilerplate to the grid" %}</a></p>
         {% endif %}
 
         {% if request.user.is_authenticated and profile.can_add_grid_feature %}
@@ -83,7 +83,7 @@
   {% else %}
     <div class="col-lg-6">
         {% if request.user.is_authenticated and profile.can_add_grid_package %}
-          <p><a href="{% url 'add_grid_package' grid.slug %}"><span class="glyphicon glyphicon-plus"></span> {% trans "Add package to the grid" %}</a></p>
+          <p><a href="{% url 'add_grid_package' grid.slug %}"><span class="glyphicon glyphicon-plus"></span> {% trans "Add boilerplate to the grid" %}</a></p>
         {% endif %}
 
         {% if request.user.is_authenticated and profile.can_add_grid_feature %}

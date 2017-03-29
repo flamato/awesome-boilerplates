@@ -19,7 +19,7 @@ from package.forms import PackageForm, PackageExampleForm, DocumentationForm
 from package.models import Category, Package, PackageExample
 from package.repos import get_all_repos
 
-from .utils import quote_plus
+# from .utils import quote_plus
 
 
 def repo_data_for_js():
@@ -49,8 +49,8 @@ def add_package(request, template_name="package/package_form.html"):
         new_package.created_by = request.user
         new_package.last_modified_by = request.user
         new_package.save()
-        #new_package.fetch_metadata()
-        #new_package.fetch_commits()
+        new_package.fetch_metadata()
+        new_package.fetch_commits()
 
         return HttpResponseRedirect(reverse("package", kwargs={"slug": new_package.slug}))
 
@@ -268,8 +268,8 @@ def python3_list(request, template_name="package/python3_list.html"):
         }
     )
 
-def package_list(request, template_name="package/package_list.html"):
 
+def package_list(request, template_name="package/package_list.html"):
     categories = []
     for category in Category.objects.annotate(package_count=Count("package")):
         element = {
@@ -314,17 +314,18 @@ def package_detail(request, slug, template_name="package/package.html"):
     if request.GET.get("message"):
         messages.add_message(request, messages.INFO, request.GET.get("message"))
 
-    return render(request, template_name,
-            dict(
-                package=package,
-                # pypi_ancient=pypi_ancient,
-                # no_development=no_development,
-                # pypi_no_release=pypi_no_release,
-                # warnings=warnings,
-                latest_version=package.last_released(),
-                repo=package.repo
-            )
+    return render(
+        request, template_name,
+        dict(
+            package=package,
+            # pypi_ancient=pypi_ancient,
+            # no_development=no_development,
+            # pypi_no_release=pypi_no_release,
+            # warnings=warnings,
+            latest_version=package.last_released(),
+            repo=package.repo
         )
+    )
 
 
 def int_or_0(value):
@@ -336,18 +337,20 @@ def int_or_0(value):
 
 @login_required
 def post_data(request, slug):
+    """Fetch latest data"""
+
     # if request.method == "POST":
-        # try:
-        #     # TODO Do this this with a form, really. Duh!
-        #     package.repo_watchers = int_or_0(request.POST.get("repo_watchers"))
-        #     package.repo_forks = int_or_0(request.POST.get("repo_forks"))
-        #     package.repo_description = request.POST.get("repo_description")
-        #     package.participants = request.POST.get('contributors')
-        #     package.fetch_commits()  # also saves
-        # except Exception as e:
-        #     print e
+    # try:
+    #     # TODO Do this this with a form, really. Duh!
+    #     package.repo_watchers = int_or_0(request.POST.get("repo_watchers"))
+    #     package.repo_forks = int_or_0(request.POST.get("repo_forks"))
+    #     package.repo_description = request.POST.get("repo_description")
+    #     package.participants = request.POST.get('contributors')
+    #     package.fetch_commits()  # also saves
+    # except Exception as e:
+    #     print e
     package = get_object_or_404(Package, slug=slug)
-    package.fetch_pypi_data()
+    # package.fetch_pypi_data()
     package.repo.fetch_metadata(package)
     package.repo.fetch_commits(package)
     package.last_fetched = timezone.now()

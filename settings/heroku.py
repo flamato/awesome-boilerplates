@@ -24,13 +24,13 @@ INSTALLED_APPS += ['gunicorn']
 
 ########## EMAIL
 DEFAULT_FROM_EMAIL = environ.get('DEFAULT_FROM_EMAIL',
-        'Django Packages <djangopackages-noreply@djangopackages.com>')
+        'Awesome Boilerplates <awesomeboilerplates-noreply@awesomeboilerplates.com>')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = environ.get('EMAIL_HOST', 'smtp.sendgrid.com')
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD', '')
 EMAIL_HOST_USER = os.environ.get('SENDGRID_USERNAME', '')
 EMAIL_PORT = environ.get('EMAIL_PORT', 587)
-EMAIL_SUBJECT_PREFIX = environ.get('EMAIL_SUBJECT_PREFIX', '[Django Packages] ')
+EMAIL_SUBJECT_PREFIX = environ.get('EMAIL_SUBJECT_PREFIX', '[Awesome Boilerplates] ')
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
@@ -40,8 +40,8 @@ SECRET_KEY = environ.get('SECRET_KEY', '')
 
 
 ########## SITE
-SITE_TITLE = environ.get('SITE_TITLE')
-FRAMEWORK_TITLE = environ.get('FRAMEWORK_TITLE')
+# SITE_TITLE = environ.get('SITE_TITLE')
+# FRAMEWORK_TITLE = environ.get('FRAMEWORK_TITLE')
 
 
 ########## STORAGE
@@ -65,8 +65,8 @@ MEDIA_URL = STATIC_URL
 
 
 ########### Permissions
-RESTRICT_PACKAGE_EDITORS = False
-RESTRICT_GRID_EDITORS = False
+# RESTRICT_PACKAGE_EDITORS = False
+# RESTRICT_GRID_EDITORS = False
 
 ########### Errors
 # A sample logging configuration. The only tangible logging
@@ -134,22 +134,22 @@ else:
 
 
 ########## sslify
-MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
+# MIDDLEWARE_CLASSES = ('sslify.middleware.SSLifyMiddleware',) + MIDDLEWARE_CLASSES
 ########## end sslify
 
 ########## django-secure
 
-INSTALLED_APPS += ["djangosecure", ]
+# INSTALLED_APPS += ["djangosecure", ]
 
 # set this to 60 seconds and then to 518400 when you can prove it works
-SECURE_HSTS_SECONDS = 60
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_FRAME_DENY = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY = True
-SECURE_SSL_REDIRECT = True
+# SECURE_HSTS_SECONDS = 60
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# # SECURE_FRAME_DENY = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_HTTPONLY = True
+# SECURE_SSL_REDIRECT = True
 
 ########## end django-secure
 
@@ -165,10 +165,10 @@ TEMPLATE_LOADERS = (
 ########## end templates
 
 ########## appenlight-client
-import appenlight_client.client as e_client
-APPENLIGHT = e_client.get_config({'appenlight.api_key': environ.get('APPENLIGHT_KEY', '')})
+# import appenlight_client.client as e_client
+# APPENLIGHT = e_client.get_config({'appenlight.api_key': environ.get('APPENLIGHT_KEY', '')})
 
-MIDDLEWARE_CLASSES = (
-    'appenlight_client.django_middleware.AppenlightMiddleware',
-) + MIDDLEWARE_CLASSES
+# MIDDLEWARE_CLASSES = (
+#     'appenlight_client.django_middleware.AppenlightMiddleware',
+# ) + MIDDLEWARE_CLASSES
 ########## end appenlight-client

@@ -7,16 +7,16 @@
 
 {% block body %}
 
-    <h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'packages' %}">{% trans "packages" %}</a> / {{ action|title }} {% trans "package" %}</h2>
+    <h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'packages' %}">{% trans "boilerplates" %}</a> / {{ action|title }} {% trans "boilerplates" %}</h2>
 
-    <p id="package-form-message"></p>    
+    <p id="package-form-message"></p>
     <form action="{{ request.path }}" method="post" id="package-form">
         {{ form.errors }}
         {% csrf_token %}
         <fieldset>
             {{ form|crispy }}
         </fieldset>
-        
+
         <input class="btn btn-default" type="submit" name="add" value="{{ action }} {% trans "Submit" %}">
     </form>
 

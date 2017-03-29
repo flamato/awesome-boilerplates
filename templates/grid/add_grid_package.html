@@ -2,23 +2,23 @@
 
 {% load i18n %}
 
-{% block head_title %}{% blocktrans with grid.title as grid_title %}Add a package to Grid '{{ grid_title }}'{% endblocktrans %}{% endblock %}
+{% block head_title %}{% blocktrans with grid.title as grid_title %}Add a boilerplate to the Grid '{{ grid_title }}'{% endblocktrans %}{% endblock %}
 
 {% block body %}
 
     {% url 'grid' grid.slug as grid_url %}
-    <h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'grids' %}">{% trans "grids" %}</a> / {% blocktrans with grid.title as grid_title %}Add a package to grid '<a href="{{ grid_url }}">{{ grid_title }}</a>'{% endblocktrans %}</h2>
+    <h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'grids' %}">{% trans "grids" %}</a> / {% blocktrans with grid.title as grid_title %}Add a boilerplate to the grid '<a href="{{ grid_url }}">{{ grid_title }}</a>'{% endblocktrans %}</h2>
 
     <form action="{{ request.PATH }}" method="post" id="grid-package-form">
         {% csrf_token %}
         <fieldset>
-            <input id="search-field" type="text" name="q" placeholder="search packages" autocomplete="off" />
+            <input id="search-field" type="text" name="q" placeholder="search boilerplates" autocomplete="off" />
             <input name="package" id="package-field" value="0" type="hidden" />
             <div id="target-parent"><div id="target"></div></div>
         </fieldset>
     </form>
 
-    <h3>What if the Package isn't in the database?<h3>
+    <h3>What if the Boilerplate isn't in the database?<h3>
 
     <p><a class="btn btn-default" href="{% url 'add_new_grid_package' grid.slug %}">{% trans "How about adding it? »" %}</a></p>
 
