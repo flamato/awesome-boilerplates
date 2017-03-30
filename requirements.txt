@@ -12,7 +12,9 @@ django-debug-toolbar==1.5
 django-environ==0.4.0
 django-extensions==1.6.7
 django-floppyforms==1.7.0
+django-heroku-memcacheify==1.0.0
 django-jsonview==1.0.0
+django-pylibmc==0.6.1
 django-redis==4.6.0
 django-reversion==1.8.5
 django-secure==1.0.1
@@ -33,6 +35,7 @@ opbeat==3.5.2
 packaging==16.8
 psycopg2==2.6.2
 PyJWT==1.4.2
+pylibmc==1.5.2
 pyparsing==2.2.0
 python-dateutil==2.6.0
 python-openid==2.2.5
