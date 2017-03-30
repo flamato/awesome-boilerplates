@@ -15,16 +15,21 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.docker")
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.docker")
 
-if os.environ.get('DJANGO_SETTINGS_MODULE') == 'settings.docker':
-    import newrelic.agent
-    newrelic.agent.initialize()
+# if os.environ.get('DJANGO_SETTINGS_MODULE') == 'settings.docker':
+#     import newrelic.agent
+#     newrelic.agent.initialize()
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.heroku")
 
 from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+from whitenoise.django import DjangoWhiteNoise
 
-if os.environ.get('DJANGO_SETTINGS_MODULE') == 'settings.docker':
-    from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
-    application = Sentry(application)
-    application = newrelic.agent.WSGIApplicationWrapper(application)
+application = get_wsgi_application()
+application = DjangoWhiteNoise(application)
+
+# if os.environ.get('DJANGO_SETTINGS_MODULE') == 'settings.docker':
+#     from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
+#     application = Sentry(application)
+#     application = newrelic.agent.WSGIApplicationWrapper(application)

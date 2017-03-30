@@ -1,3 +1,4 @@
+appdirs==1.4.3
 certifi==2016.2.28
 chardet==2.3.0
 contextlib2==0.5.4
@@ -29,8 +30,10 @@ newrelic==2.74.0.54
 oauth2==1.9.0.post1
 oauthlib==2.0.2
 opbeat==3.5.2
+packaging==16.8
 psycopg2==2.6.2
 PyJWT==1.4.2
+pyparsing==2.2.0
 python-dateutil==2.6.0
 python-openid==2.2.5
 python-social-auth==0.2.3
@@ -46,5 +49,4 @@ uritemplate.py==3.0.2
 urllib3==1.20
 uWSGI==2.0.14
 webstack-django-sorting==0.4.3
-wheel==0.24.0
 whitenoise==3.2.2

@@ -45,23 +45,25 @@ SECRET_KEY = environ.get('SECRET_KEY', '')
 
 
 ########## STORAGE
-INSTALLED_APPS += ['storages']
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# INSTALLED_APPS += ['storages']
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = environ.get('AWS_STORAGE_BUCKET_NAME')
+# AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = environ.get('AWS_STORAGE_BUCKET_NAME')
 
-AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
-AWS_HEADERS = {
-    'Expires': 'Thu, 15 Apr 2020 20:00:00 GMT',
-    'Cache-Control': 'max-age=86400',
-}
-AWS_QUERYSTRING_AUTH = False
+# AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
+# AWS_HEADERS = {
+#     'Expires': 'Thu, 15 Apr 2020 20:00:00 GMT',
+#     'Cache-Control': 'max-age=86400',
+# }
+# AWS_QUERYSTRING_AUTH = False
 
-STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
-MEDIA_URL = STATIC_URL
+# STATIC_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
+# MEDIA_URL = STATIC_URL
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 ########### Permissions
