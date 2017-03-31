@@ -18,6 +18,8 @@ ALLOWED_HOSTS = [
     'awesomeboilerplates.herokuapp.com',
 ]
 
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
+
 
 ########## CACHE
 # CACHE_TIMEOUT = 60 * 60 * 24 * 30
