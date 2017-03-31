@@ -31,6 +31,7 @@ class Command(NoArgsCommand):
     def handle(self, *args, **options):
 
         github = github_login(token=settings.GITHUB_TOKEN)
+        print(github_login)
 
         for index, package in enumerate(Package.objects.iterator()):
 

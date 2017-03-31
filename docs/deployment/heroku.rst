@@ -36,7 +36,7 @@ Chron Jobs that need to be set up
 
 Sample::
 
-    python manage.py repo_updater --settings=settings.heroku
+    python manage.py package_updater --settings=settings.heroku
     python manage.py searchv2_build --settings=settings.heroku
 
 TODO: Email admins with the log

@@ -13,8 +13,15 @@ from postgresify import postgresify
 from .base import *
 
 
+ALLOWED_HOSTS = [
+    'awesomeboilerplates.com',
+    'awesomeboilerplates.herokuapp.com',
+]
+
+
 ########## CACHE
-CACHE_TIMEOUT = 60 * 60 * 24 * 30
+# CACHE_TIMEOUT = 60 * 60 * 24 * 30
+CACHE_TIMEOUT = 0
 CACHES = memcacheify()
 
 
