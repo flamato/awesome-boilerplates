@@ -7,3 +7,6 @@ RESTRICT_GRID_EDITORS = False
 ADMINS = [
     ("Vinta", "awesomeboilerplates@vinta.com.br"),
 ]
+
+
+GRID_CACHE_TIME = 0
