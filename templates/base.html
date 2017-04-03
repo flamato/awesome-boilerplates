@@ -58,7 +58,7 @@
         <ul>
           <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
           <li><a  class="nav-active" href="{% url 'grids' %}#intro">{% trans "Grids" %}</a></li>
-          <li><a  class="nav-active" href="{% url 'packages' %}#intro">{% trans "Packages" %}</a></li>
+          <li><a  class="nav-active" href="{% url 'packages' %}#intro">{% trans "Boilerplates" %}</a></li>
           {% if request.user.is_authenticated %}
 
               {% if request.user.is_staff %}
