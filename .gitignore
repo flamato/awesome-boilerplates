@@ -50,6 +50,7 @@ logfile
 *.dump
 
 collected_static
+/env
 .env
 .env.local
 key.pem

@@ -1,0 +1,133 @@
+/*OC New*/
+
+main {
+  background: #444;
+  min-height: 500px;
+}
+
+nav {
+  display: inline-block;
+  width: 100%;
+}
+
+nav i, nav h1 {
+  color: #fff !important;
+}
+
+nav a i {
+  font-size: 30px !important;
+}
+
+nav a h1 {
+  vertical-align: baseline !important;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 0;
+  display: inline-block;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 24px 20px;
+}
+
+nav ul a {
+  font-size: 16px;
+  color: #999;
+}
+
+nav input {
+  max-width: 150px;
+}
+
+nav form {
+  margin: 18px 0 !important;
+}
+
+nav form button {
+  margin-left: 3px;
+}
+
+.highlight  {
+  max-width: 690px;
+  text-align: center;
+  margin: auto;
+}
+
+.highlight h1 {
+  font-size: 45px;
+  color: #55d8ff;
+}
+
+.highlight p {
+  font-size: 20px;
+}
+
+.stack-box {
+  max-width: 960px;
+  margin: auto;
+  padding: 2rem 3rem;
+  background: #fff;
+  border-radius: 5px;
+  margin: 4rem auto;
+}
+
+.stack-box p {
+  margin-bottom: 0;
+  margin-top: 2rem;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.stack-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stack-list h3 {
+  margin: 7px 0;
+}
+
+.stack-list .item a{
+  font-size: 16px;
+  color: #333;
+  line-height: 32px;
+}
+
+.search-box {
+  background: #55d8ff;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.user-logged {
+  color: #55d8ff;
+}
+
+.search-box h2 {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 2rem;
+  color: #030202;
+}
+
+.search-box input {
+  min-width: 300px;
+}
+
+.search-result {
+  /*margin-top: 4rem;*/
+}
+
+.footer {
+  margin-top: 80px !important;
+  background: #55d8ff !important;
+}
+
+.footer a {
+  color: #030202;
+}

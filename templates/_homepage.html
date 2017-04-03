@@ -3,26 +3,22 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4 col-lg-4">
-      <h2><i>{{ SITE_TITLE }} is a directory of boilerplate projects.</i></h2>
-      <p><b>{{ package_count }}</b> {% trans "boilerplates and counting!" %}</p>
-
+      <h2>Add Boilerplates and Grids</h2>
       <!-- start We Need Your Help panel -->
       <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-          <h3 class="panel-title pull-left">{% trans "Add boilerplates and grids" %}</h3>
-        </div>
         <div class="panel-body">
           <p>
+            <b>{{ package_count }} {% trans "boilerplates and counting!" %}</b><br>
             {% trans "Know of any boilerplates not listed here?  Add them now!  It's quick and easy." %}
           </p>
           <p>
-            <a class="btn btn-default" href="{% url 'add_package' %}">{% trans "add boilerplate »" %}</a>
+            <a class="btn btn-primary" href="{% url 'add_package' %}">{% trans "add boilerplate »" %}</a>
           </p>
           <p>
             {% trans "Or add a grid comparing the features of 2 or more similar boilerplates." %}
           </p>
           <p>
-            <a class="btn btn-default" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
+            <a class="btn btn-primary" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
           </p>
         </div>
       </div>
@@ -30,13 +26,11 @@
     </div>
 
     <div class="col-sm-4 col-lg-4">
-      <h2>{% trans "Latest 5 boilerplates Added" %}</h2>
-
+      <h2>{% trans "Latest Boilerplates Added" %}</h2>
       <div class="list-group">
         {% for package in latest_packages %}
-          <a href="{{ package.get_absolute_url }}" class="list-group-item">
+          <a href="{{ package.get_absolute_url }}" class="list-group-item list-group-item-info">
             <h4 class="list-group-item-heading">{{ package.title }}</h4>
-
             <p class="list-group-item-text">
               {% with package.repo_description|truncatewords:25 as short %}
                 {% if package.repo_description|length > short|length %}

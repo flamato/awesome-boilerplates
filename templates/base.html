@@ -22,8 +22,10 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-glyphicons.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}components/audreyr-rotatingnav/dist/jquery.rotatingnav.min.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}components/audreyr-topbar/dist/jquery.topbar.min.css" type="text/css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/oc.css" type="text/css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/oc-new.css" type="text/css" />
     <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png" />
     {% block extra_head %}{% endblock %}
 </head>
@@ -38,123 +40,108 @@
   </div>
 {% endfor %}
 
-<div class="header">
-    <div class="container">
-        <!-- Start of navbar -->
-        <div class="navbar">
+<main>
+  <div class="container">
+    <nav>
+      <div class="pull-left">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <i class="fa fa-cube"></i>
+          <h1>{{ SITE_TITLE }}</h1>
+        </a>
+      </div>
+      <div class="pull-right">
+        <!-- Search form -->
+        <form action="{% url 'search' %}"  class="navbar-form pull-left">
+          <input type="text" name="q" class="col-12 form-control" id="search-2" ng-model="model.q" ng-keyup="search(model, '{% url 'apiv4:searchv2-list' %}')" placeholder="Search" autocomplete="off">
+          <button type="submit" id="search_button" class="btn btn-default">Go</button>
+        </form>
+        <ul>
+          <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+          <li><a href="{% url 'grids' %}">{% trans "Grids" %}</a></li>
+          {% if request.user.is_authenticated %}
 
-            <!-- Logo and title -->
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="{{ STATIC_URL }}img/logo_squares.png" />
-                <h1>{{ SITE_TITLE }}</h1>
-            </a>
-
-            <!-- Main nav -->
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-                {% if request.user.is_authenticated %}
-                    {% if profile.github_account %}
-                        <li><a href="{% url 'profile_detail' profile.github_account %}">{{ profile.github_account }}</a></li>
-                    {% endif %}
-                    {% if request.user.is_staff %}
-                        <li><a href="{% url 'admin:index' %}">{% trans "Admin" %}</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'logout' %}">{% trans "Log out" %}</a></li>
-                {% else %}
-                    <li><a href="{% url 'social:begin' 'github' %}{% if current_path %}?next={{ current_path }}{% endif %}">{% trans "Sign in with Github" %}</a></li>
+              {% if request.user.is_staff %}
+                  <li><a class="user-logged" href="{% url 'admin:index' %}">{% trans "Admin" %}</a></li>
+              {% endif %}
+              <li><a href="{% url 'logout' %}">{% trans "Log out" %}</a></li>
+          {% else %}
+              <li><a href="{% url 'social:begin' 'github' %}{% if current_path %}?next={{ current_path }}{% endif %}">{% trans "Sign in" %}</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="highlight">
+      <h1>The Web’s Most Awesome Directory of Boilerplate Projects</h1>
+    </div>
+    <div class="stack-box">
+      <div class="stack-list">
+        <h3>Popular Grids</h3>
+        {% for grid_chunk in grid_headers %}
+          <div class="item">
+            {% for tab in grid_chunk %}
+                {% if tab %}
+                    <a href="{% url 'grid' tab.slug %}" title="{{ tab.description }}">{{ tab.title|truncatechars:"30" }}</a><br />
                 {% endif %}
-            </ul>
-
-            <!-- Search form -->
-            <form action="{% url 'search' %}"  class="navbar-form pull-left">
-              <input type="text" name="q" class="col-12 form-control" style="width: 240px;" id="search-2" ng-model="model.q" ng-keyup="search(model, '{% url 'apiv4:searchv2-list' %}')" placeholder="Search" autocomplete="off">
-              <button type="submit" id="search_button" class="btn btn-default">Go</button>
-            </form>
-
-        </div>
-        <!-- End of navbar -->
-    </div>
-</div>
-
-<div id="myrotatingnav" class="rotatingnav slide">
-  <div class="rotatingnav-inner">
-  {% for grid_chunk in grid_headers %}
-    <div class="item">
-      {% for tab in grid_chunk %}
-          {% if tab %}
-              <a href="{% url 'grid' tab.slug %}" title="{{ tab.description }}">{{ tab.title|truncatechars:"30" }}</a><br />
-          {% endif %}
-          {% if forloop.parentloop.last and forloop.last %}
-              <a class="gridnav-name" href="{% url 'grids' %}">{% trans "&raquo; more grids..." %}</a>
-          {% endif %}
-      {% endfor %}
-    </div>
-  {% endfor %}
-
-  <a class="left rotatingnav-control">
-    <span class="icon-prev"></span>
-  </a>
-  <a class="right rotatingnav-control">
-    <span class="icon-next"></span>
-  </a>
-
-  </div>
-</div>
-
-<span>
-    <div class="container" ng-hide="items">
-        {% block body %}
-        {% endblock %}
-    </div>
-    <div class="container" ng-show="items">
-      <div class="row">
-        <div class="col-12">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>{% trans "Search Weight" %}</th>
-                  <th>{% trans "Package" %}</th>
-                  <th>{% trans "Description" %}</th>
-                  <th>{% trans "Last PyPI release:" %}</th>
-                  <th>{% trans "Repo Forks" %}</th>
-                  <th>{% trans "Stars" %}</th>
-                </tr>
-              </thead>
-              <tbody>
-                    {% verbatim %}
-                    <tr ng-repeat="item in items">
-                      <td>{{ item.weight / max_weight * 100 | number:0 }}%</td>
-                      <td>
-                          <a ng-href="{{ item.absolute_url }}">{{ item.title }}</a>
-                      </td>
-                      <td>
-                        <strong ng-if="item.item_type=='grid'">Grid:</strong>
-                        {{ item.description }}
-                      </td>
-
-                      <td ng-if="item.item_type=='package'">
-                            {{ item.last_released | date: 'mediumDate' }}
-                      </td>
-                      <td ng-if="item.item_type=='grid'">
-                            N/A
-                      </td>
-                      <td  ng-if="item.item_type=='package'">
-                        {{ item.repo_forks }}
-                      </td>
-                      <td ng-if="item.item_type=='grid'">
-                            N/A
-                      </td>
-                      <td  ng-if="item.item_type=='package'">{{ item.repo_watchers }}</td>
-                      <td ng-if="item.item_type=='grid'">
-                            N/A
-                      </td>
-                    </tr>
-                    {% endverbatim %}
-              </tbody>
-            </table>
+            {% endfor %}
           </div>
-        </div>
+        {% endfor %}
+      </div>
+      <p>*Know of any boilerplates not listed here? <a href="{% url 'add_package' %}">Add them now!</a> It's quick and easy.</p>
     </div>
+  </div>
+</main>
+<div class="container" ng-hide="items">
+  {% block body %}{% endblock %}
+</div>
+<div class="container search-result" ng-show="items">
+  <div class="col-12">
+    <h2>Search Result:</h2>
+    <div class="panel panel-primary">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{% trans "Search Weight" %}</th>
+            <th>{% trans "Package" %}</th>
+            <th>{% trans "Description" %}</th>
+            <th>{% trans "Last PyPI release:" %}</th>
+            <th>{% trans "Repo Forks" %}</th>
+            <th>{% trans "Stars" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% verbatim %}
+          <tr ng-repeat="item in items">
+            <td>{{ item.weight / max_weight * 100 | number:0 }}%</td>
+            <td>
+                <a ng-href="{{ item.absolute_url }}">{{ item.title }}</a>
+            </td>
+            <td>
+              <strong ng-if="item.item_type=='grid'">Grid:</strong>
+              {{ item.description }}
+            </td>
+
+            <td ng-if="item.item_type=='package'">
+                  {{ item.last_released | date: 'mediumDate' }}
+            </td>
+            <td ng-if="item.item_type=='grid'">
+                  N/A
+            </td>
+            <td  ng-if="item.item_type=='package'">
+              {{ item.repo_forks }}
+            </td>
+            <td ng-if="item.item_type=='grid'">
+                  N/A
+            </td>
+            <td  ng-if="item.item_type=='package'">{{ item.repo_watchers }}</td>
+            <td ng-if="item.item_type=='grid'">
+                  N/A
+            </td>
+          </tr>
+          {% endverbatim %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <!-- Start of footer -->

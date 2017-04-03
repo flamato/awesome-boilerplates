@@ -8,11 +8,11 @@
  * Use a container that's as large as will fit.
  */
 
-.container {
+/*.container {
   width: 95%;
   margin: 0 auto;
   max-width: none;
-}
+}*/
 
 /**
  * Customize default TopBar to match the site colors.
@@ -21,14 +21,6 @@
 .topbar-default {
   background-color: #86e3d0;
   border-bottom: 1px solid #5BC0DE;
-}
-
-/**
- * Header bar.
- */
-
-.header {
-    border-top: 10px solid #75DFCA;
 }
 
 /**
