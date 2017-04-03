@@ -98,13 +98,18 @@ nav form button {
   line-height: 32px;
 }
 
+.stack-item-last {
+  font-weight: 700;
+  color: #428bca !important;
+}
+
 .search-box {
   background: #55d8ff;
   text-align: center;
   padding: 2rem 0;
 }
 
-.user-logged {
+.nav-active {
   color: #55d8ff;
 }
 
@@ -130,4 +135,8 @@ nav form button {
 
 .footer a {
   color: #030202;
+}
+
+.m-b-2 {
+  margin-bottom: 2rem;
 }

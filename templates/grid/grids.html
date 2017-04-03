@@ -6,12 +6,10 @@
 {% block body %}
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 m-b-2">
       <h2>{% trans "Grids" %}</h2>
       {% if request.user.is_authenticated and profile.can_add_grid %}
-        <p>
-          <a class="btn btn-default" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
-        </p>
+        <a class="btn btn-primary" href="{% url 'add_grid' %}">{% trans "Add a New Grid" %}</a>
       {% endif %}
     </div>
   </div>

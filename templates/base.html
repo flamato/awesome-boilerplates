@@ -57,7 +57,8 @@
         </form>
         <ul>
           <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-          <li><a href="{% url 'grids' %}">{% trans "Grids" %}</a></li>
+          <li><a  class="nav-active" href="{% url 'grids' %}#intro">{% trans "Grids" %}</a></li>
+          <li><a  class="nav-active" href="{% url 'packages' %}#intro">{% trans "Packages" %}</a></li>
           {% if request.user.is_authenticated %}
 
               {% if request.user.is_staff %}
@@ -82,15 +83,18 @@
                 {% if tab %}
                     <a href="{% url 'grid' tab.slug %}" title="{{ tab.description }}">{{ tab.title|truncatechars:"30" }}</a><br />
                 {% endif %}
+                {% if forloop.parentloop.last and forloop.last %}
+                  <a class="stack-item-last" href="{% url 'grids' %}#intro">{% trans "» See More" %}</a>
+                {% endif %}
             {% endfor %}
           </div>
         {% endfor %}
       </div>
-      <p>*Know of any boilerplates not listed here? <a href="{% url 'add_package' %}">Add them now!</a> It's quick and easy.</p>
+      <p>*Know of any boilerplates not listed here? <a href="{% url 'add_package' %}#intro">Add them now!</a> It's quick and easy.</p>
     </div>
   </div>
 </main>
-<div class="container" ng-hide="items">
+<div class="container" id="intro" ng-hide="items">
   {% block body %}{% endblock %}
 </div>
 <div class="container search-result" ng-show="items">

@@ -30,7 +30,7 @@
 {% endif %}
 {% endcomment %}
 
-<h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'packages' %}">{% trans "boilerplates" %}</a> / {{ package.title }}
+<h2><a href="{% url 'home' %}">{% trans "home" %}</a> / <a href="{% url 'packages' %}#intro">{% trans "boilerplates" %}</a> / {{ package.title }}
   <a href="{% url 'edit_package' package.slug %}"><span class="glyphicon glyphicon-pencil"></span></a>
 </h2>
 
@@ -106,7 +106,7 @@
         <tbody>
           <tr>
             <td>
-              <a href="{% url 'category' package.category.slug %}">{{ package.category }}</a>
+              <a href="{% url 'category' package.category.slug %}#intro">{{ package.category }}</a>
             </td>
             <td>
                 {{ package.usage.count }}

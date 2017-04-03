@@ -12,13 +12,13 @@
             {% trans "Know of any boilerplates not listed here?  Add them now!  It's quick and easy." %}
           </p>
           <p>
-            <a class="btn btn-primary" href="{% url 'add_package' %}">{% trans "add boilerplate »" %}</a>
+            <a class="btn btn-primary" href="{% url 'add_package' %}#intro">{% trans "add boilerplate »" %}</a>
           </p>
           <p>
             {% trans "Or add a grid comparing the features of 2 or more similar boilerplates." %}
           </p>
           <p>
-            <a class="btn btn-primary" href="{% url 'add_grid' %}">{% trans "add grid »" %}</a>
+            <a class="btn btn-primary" href="{% url 'add_grid' %}#intro">{% trans "add grid »" %}</a>
           </p>
         </div>
       </div>
@@ -52,7 +52,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           {% for category in categories %}
-            <h3><a href="{% url 'category' category.slug %}">{{ category.title_plural }}</a> ({{ category.count }})</h3>
+            <h3><a href="{% url 'category' category.slug %}#intro">{{ category.title_plural }}</a> ({{ category.count }})</h3>
             <p>{{ category.description }}</p>
           {% endfor %}
         </div>
