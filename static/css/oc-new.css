@@ -2,7 +2,6 @@
 
 main {
   background: #444;
-  min-height: 500px;
 }
 
 nav {
@@ -60,6 +59,7 @@ nav form button {
 .highlight h1 {
   font-size: 45px;
   color: #55d8ff;
+  margin-bottom: 3rem;
 }
 
 .highlight p {
@@ -72,7 +72,7 @@ nav form button {
   padding: 2rem 3rem;
   background: #fff;
   border-radius: 5px;
-  margin: 4rem auto;
+  margin-bottom: 2rem;
 }
 
 .stack-box p {
