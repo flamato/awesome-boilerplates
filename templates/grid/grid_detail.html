@@ -26,7 +26,7 @@
     </h2>
   </div>
 </div>
-{% cache GRID_CACHE_TIME html_grid_detail_outer grid.pk %}
+{# {% cache GRID_CACHE_TIME html_grid_detail_outer grid.pk %} #}
 <div class="row">
   <div class="col-lg-{% if features %}3{% else %}6{% endif %}">
 
@@ -280,7 +280,7 @@
         <p><a href="{% url 'add_grid_package' grid.slug %}"><span class="glyphicon glyphicon-plus"></span>&nbsp;{% trans "Add a package to get a grid view" %}</a></p>
         {% endif %}
     {% endif %}
-    {% endcache %}
+    {# {% endcache %} #}
 
 {% endblock %}
 
